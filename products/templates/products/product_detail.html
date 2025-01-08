@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+
+    <!-- Affichage de l'image du produit -->
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="Image de {{ product.name }}" style="width:150px;height:150px;">
+    {% endif %}
+
+    <p><strong>Opérateur :</strong> {{ product.operator.name }}</p>
+    <p><strong>Valeur :</strong> {{ product.value }}€</p>
+    <p><strong>Prix :</strong> {{ product.price }}€</p>
+
+    <!-- Bouton pour ajouter au panier -->
+    <form action="{% url 'add_to_cart' product.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" {% if product.stock <= 0 %}disabled{% endif %}>
+            {% if product.stock > 0 %}
+                Ajouter au panier
+            {% else %}
+                Indisponible
+            {% endif %}
+        </button>
+    </form>
+    <br>
+    <a href="{% url 'product_list' product.operator.id %}">Retour à la liste des produits</a>
+</body>
+</html>

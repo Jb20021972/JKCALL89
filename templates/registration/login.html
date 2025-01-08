@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connexion</title>
+</head>
+<body>
+    <h1>Connexion</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="id_username">Nom d'utilisateur :</label>
+            <input type="text" name="username" id="id_username" required>
+        </p>
+        <p>
+            <label for="id_password">Mot de passe :</label>
+            <input type="password" name="password" id="id_password" required>
+        </p>
+        <button type="submit">Se connecter</button>
+    </form>
+</body>
+</html>

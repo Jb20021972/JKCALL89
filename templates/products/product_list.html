@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Produits de {{ operator.name }}{% endblock %}
+
+{% block content %}
+<h1>Produits pour {{ operator.name }}</h1>
+<ul>
+    {% for product in products %}
+        <li>
+            <a href="{% url 'product_detail' product.id %}">
+                {{ product.name }} - {{ product.price }}€
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'operator_list' %}">Retour à la liste des opérateurs</a>
+{% endblock %}

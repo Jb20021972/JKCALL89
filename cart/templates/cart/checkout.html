@@ -1,0 +1,27 @@
+{% load cart_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Récapitulatif de votre commande</title>
+</head>
+<body>
+    <h1>Récapitulatif de votre commande</h1>
+    {% if cart_items %}
+        <ul>
+            {% for item in cart_items %}
+                <li>
+                    {{ item.product.name }} - Quantité : {{ item.quantity }} - Prix total : {{ item.quantity|multiply:item.product.price }}€
+                </li>
+            {% endfor %}
+        </ul>
+        <p><strong>Total :</strong> {{ total_price }}€</p>
+        <form action="{% url 'validate_cart' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Confirmer la commande</button>
+        </form>
+        <a href="{% url 'cart_detail' %}">Modifier le panier</a>
+    {% else %}
+        <p>Votre panier est vide.</p>
+    {% endif %}
+</body>
+</html>

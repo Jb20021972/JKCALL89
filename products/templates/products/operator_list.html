@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des opérateurs</title>
+</head>
+<body>
+    <h1>Opérateurs</h1>
+    <ul>
+        {% for operator in operators %}
+            <li>
+                <a href="{% url 'product_list' operator.id %}">
+                    {% if operator.logo %}
+                        <img src="{{ operator.logo.url }}" alt="Logo de {{ operator.name }}" style="width:50px;height:50px;">
+                    {% endif %}
+                    {{ operator.name }} ({{ operator.country }})
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
