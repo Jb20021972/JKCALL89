@@ -1,0 +1,17 @@
+# Python
+*.pyc
+__pycache__/
+
+# Environnement virtuel
+venv/
+
+# Fichiers sensibles
+*.sqlite3
+*.env
+
+# Fichiers média
+media/
+
+# Configurations locales
+*.log
+.DS_Store
